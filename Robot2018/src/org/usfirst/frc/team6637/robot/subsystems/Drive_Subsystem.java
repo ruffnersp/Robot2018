@@ -2,9 +2,7 @@ package org.usfirst.frc.team6637.robot.subsystems;
 
 import org.usfirst.frc.team6637.robot.RobotMap;
 import org.usfirst.frc.team6637.robot.commands.Drive_Arcade_Command;
-
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
-import edu.wpi.first.wpilibj.Victor;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
@@ -13,21 +11,29 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
  */
 public class Drive_Subsystem extends Subsystem {
 
-		private Victor VLeftFront, VLeftRear, VRightFront, VRightRear;
-		private DifferentialDrive drive;
+		// motors for driving
+		WPI_TalonSRX LFMotor = new WPI_TalonSRX(RobotMap.LFTalon);
+		WPI_TalonSRX RFMotor = new WPI_TalonSRX(RobotMap.RFTalon);
+	    
+	    // slaves
+		WPI_TalonSRX LRMotor = new WPI_TalonSRX(RobotMap.LRTalon);
+		WPI_TalonSRX RRMotor = new WPI_TalonSRX(RobotMap.RRTalon);
 		
-		public Drive_Subsystem() {
-			  			
-		    VLeftFront = new Victor(RobotMap.LFVictor);
-		    VLeftRear = new Victor(RobotMap.LRVictor);
-		    SpeedControllerGroup m_left = new SpeedControllerGroup(VLeftFront, VLeftRear);
-		    
-			VRightFront = new Victor(RobotMap.RFVictor);
-			VRightRear = new Victor(RobotMap.RRVictor);
-			SpeedControllerGroup m_right = new SpeedControllerGroup(VRightFront, VRightRear);
-			
-			drive = new DifferentialDrive(m_left, m_right);
-		}
+	    DifferentialDrive drive = new DifferentialDrive(LFMotor, RFMotor);
+
+	    public Drive_Subsystem() {
+	    		
+	    		// point slaves to masters
+	    		LRMotor.follow(LFMotor);
+	    		RRMotor.follow(RFMotor);
+	    		
+	    		// invert if necessary, otherwise delete
+	    		LFMotor.setInverted(false);
+	    		RFMotor.setInverted(false);
+	    		LRMotor.setInverted(false);	    		
+	    		RRMotor.setInverted(false);
+
+	    }
 		
 		public void initDefaultCommand() {
 	        // Set the default command for a subsystem here.
@@ -35,11 +41,11 @@ public class Drive_Subsystem extends Subsystem {
 	    }
 		
 		public void autonDrive(double move, double turn) {
-			drive.arcadeDrive(-move, turn);
+			drive.arcadeDrive(move, -turn);
 		}
 		
 		public void teleopDrive(double move, double turn) {
-			drive.arcadeDrive(-move, turn);
+			drive.arcadeDrive(move, -turn);
 		}
 		
 		public void setPower(double leftPower, double rightPower) {

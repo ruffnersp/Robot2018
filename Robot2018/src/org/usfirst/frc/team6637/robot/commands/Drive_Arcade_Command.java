@@ -18,7 +18,7 @@ public class Drive_Arcade_Command extends Command {
     protected void execute() { 
     		double move = Robot.oi.joystick.getY();
     		double turn = Robot.oi.joystick.getX();
-    		Robot.driveSubsystem.teleopDrive(move, -turn);
+    		Robot.driveSubsystem.teleopDrive(move, turn);
     }
 
     // Make this return true when this Command no longer needs to run execute()

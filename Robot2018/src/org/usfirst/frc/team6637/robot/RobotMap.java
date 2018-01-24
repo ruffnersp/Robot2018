@@ -9,10 +9,12 @@ package org.usfirst.frc.team6637.robot;
 public class RobotMap {
 
 	// PWM
-	public static final int RFVictor = 0;
-	public static final int RRVictor = 1;	
-	public static final int LRVictor = 2;
-	public static final int LFVictor = 3;
+	
+	// CAN
+	public static final int LFTalon = 1;	
+	public static final int LRTalon = 2;
+	public static final int RFTalon = 3;
+	public static final int RRTalon = 4;
 	
 	// DriveStation
 	public static final int Joystick = 0;
