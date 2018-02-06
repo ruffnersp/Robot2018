@@ -28,10 +28,10 @@ public class Drive_Subsystem extends Subsystem {
 	    		RRMotor.follow(RFMotor);
 	    		
 	    		// invert if necessary, otherwise delete
-	    		LFMotor.setInverted(false);
-	    		RFMotor.setInverted(false);
-	    		LRMotor.setInverted(false);	    		
-	    		RRMotor.setInverted(false);
+	    		LFMotor.setInverted(true);
+	    		RFMotor.setInverted(true);
+	    		LRMotor.setInverted(true);	    		
+	    		RRMotor.setInverted(true);
 
 	    }
 		
