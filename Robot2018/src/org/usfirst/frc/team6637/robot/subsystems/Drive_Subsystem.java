@@ -37,7 +37,7 @@ public class Drive_Subsystem extends Subsystem {
 		
 		public void initDefaultCommand() {
 	        // Set the default command for a subsystem here.
-	        setDefaultCommand(new Drive_Arcade_Command());
+	        setDefaultCommand(new Drive_Arcade_Command()); 
 	    }
 		
 		public void autonDrive(double move, double turn) {
