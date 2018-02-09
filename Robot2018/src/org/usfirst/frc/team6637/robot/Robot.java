@@ -12,12 +12,14 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team6637.robot.commands.Drive_GoStraight_Command;
 import org.usfirst.frc.team6637.robot.subsystems.DriveTrainEncoders_Subsystem;
 import org.usfirst.frc.team6637.robot.subsystems.Drive_Subsystem;
+import org.usfirst.frc.team6637.robot.subsystems.Gripper_Subsystem;
 
 public class Robot extends IterativeRobot {
 	
 	// load all subsystems
 	public static final Drive_Subsystem driveSubsystem = new Drive_Subsystem();
 	public static final DriveTrainEncoders_Subsystem driveTrainEncoders = new DriveTrainEncoders_Subsystem();
+	public static final Gripper_Subsystem gripperSubsystem = new Gripper_Subsystem();
 	public static OI oi;
 	
 	// gyro

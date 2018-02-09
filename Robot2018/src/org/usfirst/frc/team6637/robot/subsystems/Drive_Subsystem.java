@@ -3,6 +3,8 @@ package org.usfirst.frc.team6637.robot.subsystems;
 import org.usfirst.frc.team6637.robot.RobotMap;
 import org.usfirst.frc.team6637.robot.commands.Drive_Arcade_Command;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
@@ -16,7 +18,7 @@ public class Drive_Subsystem extends Subsystem {
 		WPI_TalonSRX RFMotor = new WPI_TalonSRX(RobotMap.RFTalon);
 	    
 	    // slaves
-		WPI_TalonSRX LRMotor = new WPI_TalonSRX(RobotMap.LRTalon);
+		WPI_VictorSPX LRMotor = new WPI_VictorSPX(RobotMap.LRTalon);
 		WPI_TalonSRX RRMotor = new WPI_TalonSRX(RobotMap.RRTalon);
 		
 	    DifferentialDrive drive = new DifferentialDrive(LFMotor, RFMotor);
@@ -28,10 +30,10 @@ public class Drive_Subsystem extends Subsystem {
 	    		RRMotor.follow(RFMotor);
 	    		
 	    		// invert if necessary, otherwise delete
-	    		LFMotor.setInverted(true);
-	    		RFMotor.setInverted(true);
-	    		LRMotor.setInverted(true);	    		
-	    		RRMotor.setInverted(true);
+	    		LFMotor.setInverted(false);
+	    		RFMotor.setInverted(false);
+	    		LRMotor.setInverted(false);	    		
+	    		RRMotor.setInverted(false);
 
 	    }
 		
@@ -45,7 +47,17 @@ public class Drive_Subsystem extends Subsystem {
 		}
 		
 		public void teleopDrive(double move, double turn) {
-			drive.arcadeDrive(move, -turn);
+
+			if (Math.abs(move) < 0.10) {
+				
+				move = 0;
+			}
+			if (Math.abs(turn) < 0.10) {
+				
+				turn = 0;
+			}
+			
+			drive.arcadeDrive(-move, -turn);
 		}
 		
 		public void setPower(double leftPower, double rightPower) {
