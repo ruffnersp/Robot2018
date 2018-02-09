@@ -9,7 +9,6 @@ public class Drive_GoStraight_Command extends Command {
 	
 	public double Kp = -0.035;
 	public double inches,power;
-	public int toleranceCount;
 	
     public Drive_GoStraight_Command(double inchesVar, double powerVar) {
         // Use requires() here to declare subsystem dependencies

@@ -16,15 +16,15 @@ public class DriveTrainEncoders_Subsystem extends Subsystem {
 		
 		// initiate encoders
 		LDriveEncoder = new Encoder(RobotMap.LDriveEncoderA, RobotMap.LDriveEncoderB, true, Encoder.EncodingType.k4X);
-    	RDriveEncoder = new Encoder(RobotMap.RDriveEncoderA, RobotMap.RDriveEncoderB, false, Encoder.EncodingType.k4X);
-    	RDriveEncoder.setDistancePerPulse(Math.PI * wheelDiameter / pulsePerRevolution); // inches / pulse
-    	RDriveEncoder.setMinRate(.1);
-    	RDriveEncoder.setSamplesToAverage(7);
-    	LDriveEncoder.setDistancePerPulse(Math.PI * wheelDiameter / pulsePerRevolution); // inches / pulse
-    	LDriveEncoder.setMinRate(.1);
-    	LDriveEncoder.setSamplesToAverage(7);
+    		RDriveEncoder = new Encoder(RobotMap.RDriveEncoderA, RobotMap.RDriveEncoderB, false, Encoder.EncodingType.k4X);
+    		RDriveEncoder.setDistancePerPulse(Math.PI * wheelDiameter / pulsePerRevolution); // inches / pulse
+    		RDriveEncoder.setMinRate(.1);
+    		RDriveEncoder.setSamplesToAverage(7);
+    		LDriveEncoder.setDistancePerPulse(Math.PI * wheelDiameter / pulsePerRevolution); // inches / pulse
+    		LDriveEncoder.setMinRate(.1);
+    		LDriveEncoder.setSamplesToAverage(7);
     	
-    	resetEncoders();
+    		resetEncoders();
     	
 	}
     
@@ -34,27 +34,27 @@ public class DriveTrainEncoders_Subsystem extends Subsystem {
     }
     
     public double getRightDistance(){
-    	return RDriveEncoder.getDistance();
+    		return RDriveEncoder.getDistance();
     }
     
     public double getRightRate(){
-    	return RDriveEncoder.getRate();
+    		return RDriveEncoder.getRate();
     }
     
     public double getLeftDistance(){
-    	return LDriveEncoder.getDistance();
+    		return LDriveEncoder.getDistance();
     }
     
     public double getLeftRate(){
-    	return LDriveEncoder.getRate();	
+    		return LDriveEncoder.getRate();	
     }
     
     public double getAverageDistance(){
-    	return (getLeftDistance() + getRightDistance()) / 2;
+    		return (getLeftDistance() + getRightDistance()) / 2;
     }
     
     public void resetEncoders(){
-    	LDriveEncoder.reset();
-    	RDriveEncoder.reset();
+    		LDriveEncoder.reset();
+    		RDriveEncoder.reset();
     }
 }
