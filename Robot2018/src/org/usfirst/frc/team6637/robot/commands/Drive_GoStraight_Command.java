@@ -1,4 +1,4 @@
-	package org.usfirst.frc.team6637.robot.commands;
+package org.usfirst.frc.team6637.robot.commands;
 
 import org.usfirst.frc.team6637.robot.Robot;
 
@@ -20,13 +20,14 @@ public class Drive_GoStraight_Command extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-		Robot.gyro.reset();
+		//Robot.gyro.reset();
 		Robot.driveTrainEncoders.resetEncoders();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    		double angle = Robot.gyro.getAngle();
+    		//double angle = Robot.gyro.getAngle();
+    		double angle = 0.0;
     	
     		//drive forward
     		Robot.driveSubsystem.autonDrive(power, angle*Kp);

@@ -7,16 +7,15 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class Gripper_Open_Command extends Command {
+public class Elevator_Raise_Command extends Command {
 
-    public Gripper_Open_Command() {
-        // Use requires() here to declare subsystem dependencies
-        requires(Robot.gripperSubsystem);
+    public Elevator_Raise_Command() {
+    	requires(Robot.elevatorSubsystem);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.gripperSubsystem.open();
+    	Robot.elevatorSubsystem.raise();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -31,10 +30,12 @@ public class Gripper_Open_Command extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.elevatorSubsystem.stop();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	end();
     }
 }

@@ -12,9 +12,10 @@ public class RobotMap {
 	
 	// CAN
 	public static final int LFTalon = 1;	
-	public static final int LRTalon = 2;
+	public static final int LRVictor = 2;
 	public static final int RFTalon = 3;
 	public static final int RRTalon = 4;
+	public static final int LiftTalon = 5;
 	
 	// DriveStation
 	public static final int Joystick = 0;

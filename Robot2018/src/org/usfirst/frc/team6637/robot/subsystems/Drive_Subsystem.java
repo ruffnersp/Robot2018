@@ -18,7 +18,7 @@ public class Drive_Subsystem extends Subsystem {
 		WPI_TalonSRX RFMotor = new WPI_TalonSRX(RobotMap.RFTalon);
 	    
 	    // slaves
-		WPI_VictorSPX LRMotor = new WPI_VictorSPX(RobotMap.LRTalon);
+		WPI_VictorSPX LRMotor = new WPI_VictorSPX(RobotMap.LRVictor);
 		WPI_TalonSRX RRMotor = new WPI_TalonSRX(RobotMap.RRTalon);
 		
 	    DifferentialDrive drive = new DifferentialDrive(LFMotor, RFMotor);
@@ -30,10 +30,10 @@ public class Drive_Subsystem extends Subsystem {
 	    		RRMotor.follow(RFMotor);
 	    		
 	    		// invert if necessary, otherwise delete
-	    		LFMotor.setInverted(false);
-	    		RFMotor.setInverted(false);
-	    		LRMotor.setInverted(false);	    		
-	    		RRMotor.setInverted(false);
+	    		LFMotor.setInverted(true);
+	    		RFMotor.setInverted(true);
+	    		LRMotor.setInverted(true);	    		
+	    		RRMotor.setInverted(true);
 
 	    }
 		
@@ -57,7 +57,7 @@ public class Drive_Subsystem extends Subsystem {
 				turn = 0;
 			}
 			
-			drive.arcadeDrive(-move, -turn);
+			drive.arcadeDrive(move, -turn);
 		}
 		
 		public void setPower(double leftPower, double rightPower) {

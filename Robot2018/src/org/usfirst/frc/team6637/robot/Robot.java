@@ -1,17 +1,18 @@
 
 package org.usfirst.frc.team6637.robot;
 
-import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+//import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 //import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.usfirst.frc.team6637.robot.commands.Drive_GoStraight_Command;
+//import org.usfirst.frc.team6637.robot.commands.Drive_GoStraight_Command;
 import org.usfirst.frc.team6637.robot.subsystems.DriveTrainEncoders_Subsystem;
 import org.usfirst.frc.team6637.robot.subsystems.Drive_Subsystem;
+import org.usfirst.frc.team6637.robot.subsystems.Elevator_Subsystem;
 import org.usfirst.frc.team6637.robot.subsystems.Gripper_Subsystem;
 
 public class Robot extends IterativeRobot {
@@ -20,10 +21,11 @@ public class Robot extends IterativeRobot {
 	public static final Drive_Subsystem driveSubsystem = new Drive_Subsystem();
 	public static final DriveTrainEncoders_Subsystem driveTrainEncoders = new DriveTrainEncoders_Subsystem();
 	public static final Gripper_Subsystem gripperSubsystem = new Gripper_Subsystem();
+	public static final Elevator_Subsystem elevatorSubsystem = new Elevator_Subsystem();
 	public static OI oi;
 	
 	// gyro
-	public static ADXRS450_Gyro gyro;
+	//public static ADXRS450_Gyro gyro;
 
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
@@ -33,12 +35,12 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		
 		// AUTON CHOOSER SETUP
-		chooser.addDefault("Drive Straight 5 feet", new Drive_GoStraight_Command(60.0, 0.4));
-		chooser.addObject("Drive Straight 3 feet", new Drive_GoStraight_Command(36.0, 0.4));
-		SmartDashboard.putData("Auto mode", chooser);
+		//chooser.addDefault("Drive Straight 5 feet", new Drive_GoStraight_Command(60.0, 0.4));
+		//chooser.addObject("Drive Straight 3 feet", new Drive_GoStraight_Command(36.0, 0.4));
+		//SmartDashboard.putData("Auto mode", chooser);
 		
 		// Gyro must be instantiated in the robotInit() function
-		gyro = new ADXRS450_Gyro();		
+		//gyro = new ADXRS450_Gyro();		
 	}
 
 	@Override
