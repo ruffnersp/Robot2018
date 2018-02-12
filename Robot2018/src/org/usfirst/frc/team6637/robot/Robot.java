@@ -8,8 +8,11 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 //import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 //import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-//import org.usfirst.frc.team6637.robot.commands.Drive_GoStraight_Command;
+import org.usfirst.frc.team6637.robot.commands.Center_Auton_CommandGroup;
+import org.usfirst.frc.team6637.robot.commands.Left_Auton_CommandGroup;
+import org.usfirst.frc.team6637.robot.commands.Right_Auton_CommandGroup;
 import org.usfirst.frc.team6637.robot.subsystems.DriveTrainEncoders_Subsystem;
 import org.usfirst.frc.team6637.robot.subsystems.Drive_Subsystem;
 import org.usfirst.frc.team6637.robot.subsystems.Elevator_Subsystem;
@@ -23,9 +26,6 @@ public class Robot extends IterativeRobot {
 	public static final Gripper_Subsystem gripperSubsystem = new Gripper_Subsystem();
 	public static final Elevator_Subsystem elevatorSubsystem = new Elevator_Subsystem();
 	public static OI oi;
-	
-	// gyro
-	//public static ADXRS450_Gyro gyro;
 
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
@@ -35,12 +35,10 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		
 		// AUTON CHOOSER SETUP
-		//chooser.addDefault("Drive Straight 5 feet", new Drive_GoStraight_Command(60.0, 0.4));
-		//chooser.addObject("Drive Straight 3 feet", new Drive_GoStraight_Command(36.0, 0.4));
-		//SmartDashboard.putData("Auto mode", chooser);
-		
-		// Gyro must be instantiated in the robotInit() function
-		//gyro = new ADXRS450_Gyro();		
+		chooser.addDefault("Left Position", new Left_Auton_CommandGroup());
+		chooser.addObject("Center Position", new Center_Auton_CommandGroup());
+		chooser.addObject("Right Position", new Right_Auton_CommandGroup());
+		SmartDashboard.putData("Auto mode", chooser);	
 	}
 
 	@Override

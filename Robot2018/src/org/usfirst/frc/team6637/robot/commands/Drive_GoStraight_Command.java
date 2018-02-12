@@ -1,46 +1,45 @@
 package org.usfirst.frc.team6637.robot.commands;
 
 import org.usfirst.frc.team6637.robot.Robot;
-
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class Drive_GoStraight_Command extends Command {
 	
 	public double Kp = -0.035;
-	public double inches,power;
+	public double inches, angle;
+	public double targetPos;
 	
-    public Drive_GoStraight_Command(double inchesVar, double powerVar) {
+    public Drive_GoStraight_Command(double inches) {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.driveSubsystem);
-        requires(Robot.driveTrainEncoders);
-    		inches = inchesVar;
-    		power = powerVar;
+        //requires(Robot.driveTrainEncoders);
+    	this.inches = inches;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-		//Robot.gyro.reset();
-		Robot.driveTrainEncoders.resetEncoders();
+		// initiate encoders
+    	Robot.driveSubsystem.initEncoders();
+    	
+    	// calculate target position
+    	targetPos = Robot.driveSubsystem.inchesToRotations(inches) * 360;
+    	
+    	//utilize motion magic
+    	Robot.driveSubsystem.initMotionMagic(targetPos);
+    	
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    		//double angle = Robot.gyro.getAngle();
-    		double angle = 0.0;
-    	
-    		//drive forward
-    		Robot.driveSubsystem.autonDrive(power, angle*Kp);
-    		Timer.delay(0.004);
 
-    		System.out.println(Robot.driveTrainEncoders.getAverageDistance());
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        if(Robot.driveTrainEncoders.getAverageDistance() >= inches) {
-        		return true;
-        }
+    	double error = inches - Robot.driveSubsystem.getLeftPositionInches();
+    	if(Math.abs(error) < 2) {
+    		return true;
+    	}
         return false;
     }
 
