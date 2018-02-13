@@ -8,6 +8,9 @@ public class Drive_Arcade_Command extends Command {
 
     public Drive_Arcade_Command() {
         requires(Robot.driveSubsystem);
+        
+        // test encoder and mm
+        Robot.driveSubsystem.initMotionMagic();
     }
 
     // Called just before this Command runs the first time

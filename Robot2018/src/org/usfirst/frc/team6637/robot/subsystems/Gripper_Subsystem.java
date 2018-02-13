@@ -12,10 +12,10 @@ public class Gripper_Subsystem extends Subsystem {
 
 	
 	//Compressor gripperCompressor = //new Compressor();
-	DoubleSolenoid gripperSolenoid = new DoubleSolenoid(0, 1);
+	//DoubleSolenoid gripperSolenoid = new DoubleSolenoid(0, 1);
 	
 	public Gripper_Subsystem() {
-		gripperSolenoid.set(DoubleSolenoid.Value.kForward);
+		//gripperSolenoid.set(DoubleSolenoid.Value.kForward);
 	}
 
     public void initDefaultCommand() {
@@ -24,10 +24,10 @@ public class Gripper_Subsystem extends Subsystem {
     }
 
     public void open() {
-    	gripperSolenoid.set(DoubleSolenoid.Value.kForward);
+    	//gripperSolenoid.set(DoubleSolenoid.Value.kForward);
     }
 
     public void close() {
-    	gripperSolenoid.set(DoubleSolenoid.Value.kReverse);
+    	//gripperSolenoid.set(DoubleSolenoid.Value.kReverse);
 	 }
 }

@@ -19,19 +19,20 @@ public class Drive_GoStraight_Command extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
 		// initiate encoders
-    	Robot.driveSubsystem.initEncoders();
+    	Robot.driveSubsystem.resetEncoders();
     	
     	// calculate target position
-    	targetPos = Robot.driveSubsystem.inchesToRotations(inches) * 360;
+    	targetPos = Robot.driveSubsystem.inchesToRotations(inches) * 1440;
+    	System.out.println(targetPos);
     	
     	//utilize motion magic
-    	Robot.driveSubsystem.initMotionMagic(targetPos);
+    	Robot.driveSubsystem.initMotionMagic();
     	
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-
+    	Robot.driveSubsystem.runMotionMagic(targetPos);
     }
 
     // Make this return true when this Command no longer needs to run execute()
