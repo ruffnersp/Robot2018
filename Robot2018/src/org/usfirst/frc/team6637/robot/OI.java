@@ -1,9 +1,12 @@
 package org.usfirst.frc.team6637.robot;
 
+import org.usfirst.frc.team6637.robot.commands.Brake_Close_Command;
+import org.usfirst.frc.team6637.robot.commands.Brake_Open_Command;
 import org.usfirst.frc.team6637.robot.commands.Elevator_Lower_Command;
 import org.usfirst.frc.team6637.robot.commands.Elevator_Raise_Command;
 import org.usfirst.frc.team6637.robot.commands.Gripper_Close_Command;
 import org.usfirst.frc.team6637.robot.commands.Gripper_Open_Command;
+import org.usfirst.frc.team6637.robot.commands.Gripper_Wait_Command;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -23,7 +26,10 @@ public class OI {
     public Button raiseLift = new JoystickButton(joystick, 6);
     public Button openGripper = new JoystickButton(joystick, 1);
     public Button closeGripper = new JoystickButton(joystick, 2);
-	
+    public Button openBrake = new JoystickButton(joystick, 3);
+    public Button closeBrake = new JoystickButton(joystick, 4);
+    public Button gripperWait = new JoystickButton(joystick, 7);
+    
 	public OI() {
    		//joystick.setDeadband(0.2);
 		
@@ -31,6 +37,9 @@ public class OI {
 		raiseLift.whileHeld(new Elevator_Raise_Command());
 		openGripper.whenPressed(new Gripper_Open_Command());
 		closeGripper.whenPressed(new Gripper_Close_Command());
+		openBrake.whenPressed(new Brake_Open_Command());
+		closeBrake.whenPressed(new Brake_Close_Command());
+		gripperWait.whenPressed(new Gripper_Wait_Command());
 		
 	}
 

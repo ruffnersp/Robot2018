@@ -11,10 +11,12 @@ public class Elevator_Lower_Command extends Command {
 
     public Elevator_Lower_Command() {
     	requires(Robot.elevatorSubsystem);
+    	requires(Robot.brakeSubsystem);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.brakeSubsystem.open();
     	Robot.elevatorSubsystem.lower();
     }
 
@@ -31,6 +33,7 @@ public class Elevator_Lower_Command extends Command {
     // Called once after isFinished returns true
     protected void end() {
     	Robot.elevatorSubsystem.stop();
+    	Robot.brakeSubsystem.close();
     }
 
     // Called when another command which requires one or more of the same

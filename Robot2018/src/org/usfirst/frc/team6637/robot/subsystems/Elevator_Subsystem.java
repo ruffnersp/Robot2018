@@ -42,11 +42,11 @@ public class Elevator_Subsystem extends PIDSubsystem {
     }
     
     public void raise() {
-    	LiftMotor.set(-0.7);
+    	LiftMotor.set(-1.0);
     }
     
     public void lower() {
-    	LiftMotor.set(0.25);
+    	LiftMotor.set(0.05);
     }
     
     public void stop() {

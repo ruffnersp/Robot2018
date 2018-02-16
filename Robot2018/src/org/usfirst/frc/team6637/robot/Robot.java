@@ -14,6 +14,7 @@ import org.usfirst.frc.team6637.robot.commands.Center_Auton_CommandGroup;
 import org.usfirst.frc.team6637.robot.commands.Drive_GoStraight_Command;
 import org.usfirst.frc.team6637.robot.commands.Left_Auton_CommandGroup;
 import org.usfirst.frc.team6637.robot.commands.Right_Auton_CommandGroup;
+import org.usfirst.frc.team6637.robot.subsystems.Brake_Subsystem;
 import org.usfirst.frc.team6637.robot.subsystems.DriveTrainEncoders_Subsystem;
 import org.usfirst.frc.team6637.robot.subsystems.Drive_Subsystem;
 import org.usfirst.frc.team6637.robot.subsystems.Elevator_Subsystem;
@@ -26,6 +27,7 @@ public class Robot extends IterativeRobot {
 	public static final DriveTrainEncoders_Subsystem driveTrainEncoders = new DriveTrainEncoders_Subsystem();
 	public static final Gripper_Subsystem gripperSubsystem = new Gripper_Subsystem();
 	public static final Elevator_Subsystem elevatorSubsystem = new Elevator_Subsystem();
+	public static final Brake_Subsystem brakeSubsystem = new Brake_Subsystem();
 	public static OI oi;
 
 	Command autonomousCommand;
