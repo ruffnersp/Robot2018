@@ -28,7 +28,7 @@ public class Drive_Subsystem extends Subsystem {
 		
 	    DifferentialDrive drive = new DifferentialDrive(LFMotor, RFMotor);
 	    
-	    public static PigeonIMU gyro;
+	    public PigeonIMU gyro;
 
 	    public Drive_Subsystem() {
 	    		
@@ -44,6 +44,7 @@ public class Drive_Subsystem extends Subsystem {
 	    	
 	    	// initiate gyro
 	    	gyro = new PigeonIMU(RRMotor);
+	    	resetAngle();
 	    	
 	    	initEncoders();
 
@@ -82,8 +83,11 @@ public class Drive_Subsystem extends Subsystem {
 	    	double [] ypr = new double[3];
 	    	gyro.getYawPitchRoll(ypr);
 	    	double angle = ypr[0];
-	    	System.out.println(angle);
-	    	return angle;
+	    	return -angle;
+	    }
+	    
+	    public void resetAngle() {
+	    	gyro.setYaw(0.0, 0);
 	    }
 	    
 	    // CONTROL MODE
@@ -177,12 +181,16 @@ public class Drive_Subsystem extends Subsystem {
 	    
 	    public int getLeftPosition() {
 	    	int pos = LFMotor.getSensorCollection().getQuadraturePosition();
-	    	return pos;    
+	    	return -pos;    
 	    }
 	    
 	    public int getRightPosition() {
 	    	int pos = RFMotor.getSensorCollection().getQuadraturePosition();
 	    	return pos;    
+	    }
+	    
+	    public double getAverageDistance() {
+	    	return getLeftPositionInches() + getRightPositionInches() / 2;
 	    }
 	    
 	    public double getLeftPositionInches() {

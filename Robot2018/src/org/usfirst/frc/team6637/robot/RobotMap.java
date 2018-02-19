@@ -9,6 +9,9 @@ package org.usfirst.frc.team6637.robot;
 public class RobotMap {
 
 	// PWM
+	public static final int Winch = 0;
+	public static final int Arm = 1;
+	public static final int LEDStrip = 2;
 	
 	// CAN
 	public static final int LFTalon = 1;	
@@ -21,9 +24,6 @@ public class RobotMap {
 	public static final int Joystick = 0;
 	
 	// DIO
-	public static final int LDriveEncoderA = 0;
-	public static final int LDriveEncoderB = 1;
-	public static final int RDriveEncoderA = 2;
-	public static final int RDriveEncoderB = 3;
+	public static final int GripperLimitSwitch = 0;
 	
 }

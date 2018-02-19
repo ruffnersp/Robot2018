@@ -2,6 +2,7 @@ package org.usfirst.frc.team6637.robot.subsystems;
 
 import org.usfirst.frc.team6637.robot.RobotMap;
 
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
@@ -24,6 +25,10 @@ public class Elevator_Subsystem extends PIDSubsystem {
         // enable() - Enables the PID controller.
     }
 
+    protected void initialize(){
+    	initEncoder();  
+    }
+    
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
@@ -41,15 +46,29 @@ public class Elevator_Subsystem extends PIDSubsystem {
         // e.g. yourMotor.set(output);
     }
     
-    public void raise() {
-    	LiftMotor.set(-1.0);
+    public void raise(double power) {
+    	LiftMotor.set(power);
     }
     
-    public void lower() {
-    	LiftMotor.set(0.05);
+    public void lower(double power) {
+    	LiftMotor.set(power);
     }
     
     public void stop() {
     	LiftMotor.set(0.0);
+    }
+    
+    public void initEncoder() {
+    	LiftMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 10);	
+    	LiftMotor.setSensorPhase(false);
+		resetEncoder();
+	}
+    public void resetEncoder() {
+    	LiftMotor.setSelectedSensorPosition(0, 0, 10);
+    }
+    
+    public int getEncoderPosition() {
+    	int pos = LiftMotor.getSensorCollection().getQuadraturePosition();
+    	return pos;    
     }
 }

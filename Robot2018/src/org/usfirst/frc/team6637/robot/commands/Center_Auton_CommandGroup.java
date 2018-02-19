@@ -29,7 +29,7 @@ public class Center_Auton_CommandGroup extends CommandGroup {
 		gameData = DriverStation.getInstance().getGameSpecificMessage();
 		if(gameData.charAt(0) == 'L'){
 			
-			addSequential(new Drive_GoStraight_Command(15.0)); 
+			//addSequential(new Drive_GoStraight_Command(15.0)); 
 		
 		} else if(gameData.charAt(1) == 'L') {
 			
