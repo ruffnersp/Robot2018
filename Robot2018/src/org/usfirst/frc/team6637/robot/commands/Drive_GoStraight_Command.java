@@ -37,7 +37,6 @@ public class Drive_GoStraight_Command extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	angle = Robot.driveSubsystem.getAngle(); 
-    	System.out.println(angle);
     	
     	distanceSoFar = Robot.driveSubsystem.getAverageDistance() - initialAverageEncoderValue;
 
