@@ -27,11 +27,8 @@ public class Drive_TurnToAngle_Command extends Command {
     protected void execute() {
     	double currentAngle = Robot.driveSubsystem.getAngle();
     	error = Math.IEEEremainder(targetAngle-currentAngle,360.0);
-    	System.out.println(currentAngle);
-    	System.out.println(error);
     	//double speed = Math.IEEEremainder(kP*error, 1);
     	double speed = 0.5;
-    	System.out.println(speed);
     	Timer.delay(.1);
     	
     	if(error > 0 ) {

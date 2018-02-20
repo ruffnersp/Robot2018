@@ -24,18 +24,18 @@ public class Right_Auton_CommandGroup extends CommandGroup {
         // arm.
     	String gameData;
 		gameData = DriverStation.getInstance().getGameSpecificMessage();
-		if(gameData.charAt(0) == 'L'){ 
+		if(gameData.charAt(0) == 'R'){ 
 			//drive forward x feet
-			//addSequential(new Drive_GoStraight_Command(168.0));
+			addSequential(new Drive_GoStraight_Command(168.0, 1.0, 18.0));
 	
 			// turn left
-			//addSequential(new Drive_TurnToAngle_Command(-90.0));
+			addSequential(new Drive_TurnToAngle_Command(-90.0));
 			
-			// drive forward 1 foot
-			//addSequential(new Drive_GoStraight_Command(12.0));
+			// drive forward 3 foot
+			addSequential(new Drive_GoStraight_Command(36.0, 0.5, 9.0));
 		
 			// drop cube
-		}else if(gameData.charAt(1) == 'L') {
+		}else if(gameData.charAt(1) == 'R') {
 		//Scale is ours
 		}
     }

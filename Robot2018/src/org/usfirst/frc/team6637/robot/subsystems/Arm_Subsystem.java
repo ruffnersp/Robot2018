@@ -14,7 +14,7 @@ public class Arm_Subsystem extends Subsystem {
     // here. Call these from Commands.
 
     public Spark Arm = new Spark(RobotMap.Arm);
-    public static final double armSpeed = 0.25;
+    public static final double armSpeed = 0.6;
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.

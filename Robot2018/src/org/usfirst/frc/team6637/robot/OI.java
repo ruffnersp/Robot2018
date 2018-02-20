@@ -1,5 +1,7 @@
 package org.usfirst.frc.team6637.robot;
 
+import org.usfirst.frc.team6637.robot.commands.Arm_Extend_Command;
+import org.usfirst.frc.team6637.robot.commands.Arm_Retract_Command;
 import org.usfirst.frc.team6637.robot.commands.Brake_Close_Command;
 import org.usfirst.frc.team6637.robot.commands.Brake_Open_Command;
 import org.usfirst.frc.team6637.robot.commands.Elevator_Lower_Command;
@@ -24,7 +26,7 @@ public class OI {
 	public XboxController joystick = new XboxController(RobotMap.Joystick);
 	
 	public Joystick driveStick = new Joystick(0);
-	public Joystick winchStick = new Joystick(4);
+	//public Joystick winchStick = new Joystick(5);
     public Button lowerLift = new JoystickButton(joystick, 5);
     public Button raiseLift = new JoystickButton(joystick, 6);
     public Button openGripper = new JoystickButton(joystick, 2);
@@ -32,6 +34,8 @@ public class OI {
     public Button openBrake = new JoystickButton(joystick, 8);
     public Button closeBrake = new JoystickButton(joystick, 7);
     public Button gripperWait = new JoystickButton(joystick, 9);
+    public Button armExtend = new JoystickButton(joystick, 3);
+    public Button armRetract =  new JoystickButton(joystick, 4);
     
 	public OI() {
    		//joystick.setDeadband(0.2);
@@ -44,7 +48,8 @@ public class OI {
 		
 		openBrake.whenPressed(new Brake_Open_Command());
 		closeBrake.whenPressed(new Brake_Close_Command());
-
+		armExtend.whileHeld(new Arm_Extend_Command());
+		armRetract.whileHeld(new Arm_Retract_Command()); 
 		
 	}
 

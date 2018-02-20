@@ -3,9 +3,7 @@ package org.usfirst.frc.team6637.robot.subsystems;
 import org.usfirst.frc.team6637.robot.RobotMap;
 import org.usfirst.frc.team6637.robot.commands.Drive_Arcade_Command;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
-import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import com.ctre.phoenix.sensors.PigeonIMU;
@@ -46,7 +44,9 @@ public class Drive_Subsystem extends Subsystem {
 	    	gyro = new PigeonIMU(RRMotor);
 	    	resetAngle();
 	    	
+	    	System.out.println("1");
 	    	initEncoders();
+	    	System.out.println("2");
 
 	    }
 		
@@ -90,83 +90,11 @@ public class Drive_Subsystem extends Subsystem {
 	    	gyro.setYaw(0.0, 0);
 	    }
 	    
-	    // CONTROL MODE
-	    
-	    public void initMotionMagic() {
-	    	
-	    	/*
-	    	 * Which PID slot to pull gains from. Starting 2018, you can choose from
-	    	 * 0,1,2 or 3. Only the first two (0,1) are visible in web-based
-	    	 * configuration.
-	    	 */
-	    	int kSlotIdx = 0;
-	    	/*
-	    	 * Talon SRX/ Victor SPX will supported multiple (cascaded) PID loops. For
-	    	 * now we just want the primary one.
-	    	 */
-	    	int kPIDLoopIdx = 0;
-	    	/*
-	    	 * set to zero to skip waiting for confirmation, set to nonzero to wait and
-	    	 * report to DS if action fails.
-	    	 */
-	    	int kTimeoutMs = 10;
-	    	
-	    	
-
-			/* Set relevant frame periods to be at least as fast as periodic rate */
-	    	LFMotor.setStatusFramePeriod(StatusFrameEnhanced.Status_13_Base_PIDF0, 10, kTimeoutMs);
-	    	LFMotor.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10, kTimeoutMs);
-			/* set the peak and nominal outputs */
-	    	LFMotor.configNominalOutputForward(0, kTimeoutMs);
-	    	LFMotor.configNominalOutputReverse(0, kTimeoutMs);
-	    	LFMotor.configPeakOutputForward(1, kTimeoutMs);
-	    	LFMotor.configPeakOutputReverse(-1, kTimeoutMs);
-	    	/* set closed loop gains in slot0 - see documentation */
-	    	LFMotor.selectProfileSlot(kSlotIdx, kPIDLoopIdx);
-	    	LFMotor.config_kF(0, 20, kTimeoutMs);
-	    	LFMotor.config_kP(0, 0, kTimeoutMs);
-	    	LFMotor.config_kI(0, 0, kTimeoutMs);
-	    	LFMotor.config_kD(0, 0, kTimeoutMs);
-	    	/* set acceleration and vcruise velocity - see documentation */
-	    	//changed both from 503
-	    	LFMotor.configMotionCruiseVelocity(600, kTimeoutMs);
-	    	LFMotor.configMotionAcceleration(400, kTimeoutMs);
-		    
-			/* Set relevant frame periods to be at least as fast as periodic rate */
-	    	RFMotor.setStatusFramePeriod(StatusFrameEnhanced.Status_13_Base_PIDF0, 10, kTimeoutMs);
-	    	RFMotor.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10, kTimeoutMs);
-			/* set the peak and nominal outputs */
-	    	RFMotor.configNominalOutputForward(0, kTimeoutMs);
-	    	RFMotor.configNominalOutputReverse(0, kTimeoutMs);
-	    	RFMotor.configPeakOutputForward(1, kTimeoutMs);
-	    	RFMotor.configPeakOutputReverse(-1, kTimeoutMs);
-	    	/* set closed loop gains in slot0 - see documentation */
-	    	RFMotor.selectProfileSlot(kSlotIdx, kPIDLoopIdx);
-	    	RFMotor.config_kF(0, 20, kTimeoutMs);
-	    	RFMotor.config_kP(0, 0, kTimeoutMs);
-	    	RFMotor.config_kI(0, 0, kTimeoutMs);
-	    	RFMotor.config_kD(0, 0, kTimeoutMs);
-	    	/* set acceleration and vcruise velocity - see documentation */
-	    	RFMotor.configMotionCruiseVelocity(600, kTimeoutMs);
-	    	RFMotor.configMotionAcceleration(400, kTimeoutMs);	    	
-	    	 
-	    }
-	    
-	    public void runMotionMagic(double targetPos) {
-	    	LFMotor.set(ControlMode.MotionMagic, -targetPos);
-	    	RFMotor.set(ControlMode.MotionMagic, targetPos);
-	    	
-	    }
-	    
-	    public void initPercentVBus() {
-	    	
-	    }
-	    
 	    // ENCODERS
 	    
 	    public void initEncoders() {
-			LFMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 10);
-			RFMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 10);
+			LFMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
+			RFMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
 			
 			LFMotor.setSensorPhase(true);
 			RFMotor.setSensorPhase(true);
@@ -175,8 +103,10 @@ public class Drive_Subsystem extends Subsystem {
 		}
 	    
 	    public void resetEncoders() {
-	    	LFMotor.setSelectedSensorPosition(0, 0, 10);
-	    	RFMotor.setSelectedSensorPosition(0, 0, 10);
+	    	System.out.println("reset");
+	    	LFMotor.setSelectedSensorPosition(0, 0, 0);
+	    	RFMotor.setSelectedSensorPosition(0, 0, 0);
+	    	System.out.println(LFMotor.getSelectedSensorPosition(0));
 	    }
 	    
 	    public int getLeftPosition() {

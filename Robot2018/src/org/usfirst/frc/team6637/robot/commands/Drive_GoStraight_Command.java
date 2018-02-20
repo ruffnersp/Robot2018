@@ -1,68 +1,58 @@
 package org.usfirst.frc.team6637.robot.commands;
 
 import org.usfirst.frc.team6637.robot.Robot;
+
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class Drive_GoStraight_Command extends Command {
 	
 	public double Kp = -0.035;
-	public double inches,angle,brakePower,rampDown,power;
-	public double targetPos;
-	public int toleranceCount; 
+	public double inches,angle,rampDown,power; 
+	public double brakePower = 0.4;
 	
-	public Drive_GoStraight_Command(double inchesVar, double powerVar, double rampDownVar) {
+	// encoders aren't resetting. store the initial distance, subtract from ongoing average distance to get distanceSoFar
+	public double initialAverageEncoderValue,distanceSoFar;
+	
+	public Drive_GoStraight_Command(double inches, double power, double rampDown) {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.driveSubsystem);
-    	inches = inchesVar;
-    	power = powerVar;
-		brakePower = 0.2;
-		toleranceCount = 0;
-		rampDown = rampDownVar;
-		
-    //public Drive_GoStraight_Command(double inches) {
-        // Use requires() here to declare subsystem dependencies
-        //requires(Robot.driveSubsystem);
-        //requires(Robot.driveTrainEncoders);
-    	//this.inches = inches;
+    	this.inches = inches;
+    	this.power = power;
+		this.rampDown = rampDown;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
 		// initiate encoders
+    	Timer.delay(.1);
     	Robot.driveSubsystem.resetEncoders();
-    	//Robot.driveSubsystem.resetAngle();
-    	
-    	
-    	// calculate target position
-    	//targetPos = Robot.driveSubsystem.inchesToRotations(inches) * 1440;
-    	//System.out.println(targetPos);
-    	
-    	//utilize motion magic
-    	//Robot.driveSubsystem.initMotionMagic();
+    	Robot.driveSubsystem.resetAngle();
+    	System.out.println(Robot.driveSubsystem.getLeftPosition());
+    	System.out.println(Robot.driveSubsystem.getRightPosition());
+    	initialAverageEncoderValue = Robot.driveSubsystem.getAverageDistance();
     	
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	//Robot.driveSubsystem.runMotionMagic(targetPos);
     	angle = Robot.driveSubsystem.getAngle(); 
     	System.out.println(angle);
     	
-    	System.out.println(Robot.driveSubsystem.getAverageDistance());
-    	System.out.println(Robot.driveSubsystem.getLeftPositionInches());
-    	System.out.println(Robot.driveSubsystem.getRightPositionInches());
-    	if(Robot.driveSubsystem.getAverageDistance() < inches - rampDown) {
+    	distanceSoFar = Robot.driveSubsystem.getAverageDistance() - initialAverageEncoderValue;
+
+    	if(distanceSoFar < inches - rampDown) {
     		Robot.driveSubsystem.autonDrive(-power, angle*Kp, false);
-    	} else if(Robot.driveSubsystem.getAverageDistance() > (inches - rampDown) && Robot.driveSubsystem.getAverageDistance() < inches) {
+    	} else if(distanceSoFar > (inches - rampDown) && Robot.driveSubsystem.getAverageDistance() < inches) {
     		Robot.driveSubsystem.autonDrive(-brakePower, angle*Kp, false);
-    	} else if(Robot.driveSubsystem.getAverageDistance() > inches) {
+    	} else if(distanceSoFar > inches) {
     		Robot.driveSubsystem.autonDrive(brakePower, -angle*Kp, false);
     	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if(Robot.driveSubsystem.getAverageDistance() > inches) {
+    	if(distanceSoFar > inches) {
     		return true;
     	}
     	
