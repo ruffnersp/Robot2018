@@ -11,8 +11,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 //import org.usfirst.frc.team6637.robot.commands.Center_Auton_CommandGroup;
-import org.usfirst.frc.team6637.robot.commands.Drive_GoStraight_Command;
-import org.usfirst.frc.team6637.robot.commands.Drive_TurnToAngle_Command;
 import org.usfirst.frc.team6637.robot.commands.Left_Auton_CommandGroup;
 import org.usfirst.frc.team6637.robot.commands.Right_Auton_CommandGroup;
 import org.usfirst.frc.team6637.robot.subsystems.Arm_Subsystem;
@@ -44,7 +42,7 @@ public class Robot extends IterativeRobot {
 		
 		// AUTON CHOOSER SETUP
 		chooser.addDefault("Left Position", new Left_Auton_CommandGroup());
-		chooser.addObject("Center Position", new Drive_GoStraight_Command(36.0, 0.5, 5.0));
+		//chooser.addObject("Center Position", new Drive_GoStraight_Command(36.0, 0.5, 5.0));
 		chooser.addObject("Right Position", new Right_Auton_CommandGroup());
 		SmartDashboard.putData("Auto mode", chooser);	
 	}

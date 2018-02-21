@@ -44,10 +44,7 @@ public class Drive_Subsystem extends Subsystem {
 	    	gyro = new PigeonIMU(RRMotor);
 	    	resetAngle();
 	    	
-	    	System.out.println("1");
 	    	initEncoders();
-	    	System.out.println("2");
-
 	    }
 		
 		public void initDefaultCommand() {
@@ -103,10 +100,8 @@ public class Drive_Subsystem extends Subsystem {
 		}
 	    
 	    public void resetEncoders() {
-	    	System.out.println("reset");
 	    	LFMotor.setSelectedSensorPosition(0, 0, 0);
 	    	RFMotor.setSelectedSensorPosition(0, 0, 0);
-	    	System.out.println(LFMotor.getSelectedSensorPosition(0));
 	    }
 	    
 	    public int getLeftPosition() {

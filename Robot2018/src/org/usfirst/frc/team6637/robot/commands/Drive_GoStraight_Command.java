@@ -25,12 +25,11 @@ public class Drive_GoStraight_Command extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
 		// initiate encoders
-    	Timer.delay(.1);
     	Robot.driveSubsystem.resetEncoders();
+    	Timer.delay(0.1);
     	Robot.driveSubsystem.resetAngle();
-    	System.out.println(Robot.driveSubsystem.getLeftPosition());
-    	System.out.println(Robot.driveSubsystem.getRightPosition());
-    	initialAverageEncoderValue = Robot.driveSubsystem.getAverageDistance();
+    	Timer.delay(0.1);
+    	//initialAverageEncoderValue = Robot.driveSubsystem.getAverageDistance();
     	
     }
 
@@ -38,20 +37,23 @@ public class Drive_GoStraight_Command extends Command {
     protected void execute() {
     	angle = Robot.driveSubsystem.getAngle(); 
     	
-    	distanceSoFar = Robot.driveSubsystem.getAverageDistance() - initialAverageEncoderValue;
-
-    	if(distanceSoFar < inches - rampDown) {
+    	//distanceSoFar = Math.abs(Robot.driveSubsystem.getAverageDistance() - initialAverageEncoderValue);
+    	System.out.println("average, encoderaverage");
+    	System.out.println(Robot.driveSubsystem.getAverageDistance());
+    	//System.out.println(initialAverageEncoderValue);
+    	if(Robot.driveSubsystem.getAverageDistance() < inches - rampDown) {
     		Robot.driveSubsystem.autonDrive(-power, angle*Kp, false);
-    	} else if(distanceSoFar > (inches - rampDown) && Robot.driveSubsystem.getAverageDistance() < inches) {
+    	} else if(Robot.driveSubsystem.getAverageDistance() > (inches - rampDown) && Robot.driveSubsystem.getAverageDistance() < inches) {
     		Robot.driveSubsystem.autonDrive(-brakePower, angle*Kp, false);
-    	} else if(distanceSoFar > inches) {
+    	} else if(Robot.driveSubsystem.getAverageDistance() > inches) {
     		Robot.driveSubsystem.autonDrive(brakePower, -angle*Kp, false);
     	}
+    	//System.out.println(distanceSoFar);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if(distanceSoFar > inches) {
+    	if(Robot.driveSubsystem.getAverageDistance() > inches) {
     		return true;
     	}
     	

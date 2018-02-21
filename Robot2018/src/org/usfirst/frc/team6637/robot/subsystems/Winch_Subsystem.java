@@ -23,6 +23,9 @@ public class Winch_Subsystem extends Subsystem {
 
 
 public void setPower(double power) {
+	if (Math.abs(power) < 0.10) {				
+		power = 0;
+	}
 		Winch.set(power);
 }
 

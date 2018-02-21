@@ -27,7 +27,9 @@ public class Center_Auton_CommandGroup extends CommandGroup {
         // arm.
     	String gameData;
 		gameData = DriverStation.getInstance().getGameSpecificMessage();
-		if(gameData.charAt(0) == 'L'){
+		if(gameData.charAt(0) == 'L'){ 
+			
+			
 			
 			//addSequential(new Drive_GoStraight_Command(15.0)); 
 		
