@@ -1,6 +1,7 @@
 
 package org.usfirst.frc.team6637.robot;
 
+import edu.wpi.first.wpilibj.CameraServer;
 //import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -44,7 +45,9 @@ public class Robot extends IterativeRobot {
 		chooser.addDefault("Left Position", new Left_Auton_CommandGroup());
 		//chooser.addObject("Center Position", new Drive_GoStraight_Command(36.0, 0.5, 5.0));
 		chooser.addObject("Right Position", new Right_Auton_CommandGroup());
-		SmartDashboard.putData("Auto mode", chooser);	
+		SmartDashboard.putData("Auto mode", chooser);
+		
+		CameraServer.getInstance().startAutomaticCapture();
 	}
 
 	@Override
