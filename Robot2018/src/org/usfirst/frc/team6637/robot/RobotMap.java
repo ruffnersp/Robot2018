@@ -25,5 +25,10 @@ public class RobotMap {
 	
 	// DIO
 	public static final int GripperLimitSwitch = 0;
+
+	public static final int LDriveEncoderA = 2;
+	public static final int LDriveEncoderB = 3;
+	public static final int RDriveEncoderA = 4;
+	public static final int RDriveEncoderB = 5;
 	
 }

@@ -2,23 +2,20 @@
 package org.usfirst.frc.team6637.robot;
 
 import edu.wpi.first.wpilibj.CameraServer;
-//import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-//import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-//import org.usfirst.frc.team6637.robot.commands.Center_Auton_CommandGroup;
+import org.usfirst.frc.team6637.robot.commands.Center_Auton_CommandGroup;
 import org.usfirst.frc.team6637.robot.commands.Left_Auton_CommandGroup;
 import org.usfirst.frc.team6637.robot.commands.Right_Auton_CommandGroup;
+
 import org.usfirst.frc.team6637.robot.subsystems.Arm_Subsystem;
-//import org.usfirst.frc.team6637.robot.commands.Left_Auton_CommandGroup;
-//import org.usfirst.frc.team6637.robot.commands.Right_Auton_CommandGroup;
 import org.usfirst.frc.team6637.robot.subsystems.Brake_Subsystem;
 import org.usfirst.frc.team6637.robot.subsystems.Drive_Subsystem;
+import org.usfirst.frc.team6637.robot.subsystems.Drive_Encoder_Subsystem;
 import org.usfirst.frc.team6637.robot.subsystems.Elevator_Subsystem;
 import org.usfirst.frc.team6637.robot.subsystems.Gripper_Subsystem;
 import org.usfirst.frc.team6637.robot.subsystems.Winch_Subsystem;
@@ -27,6 +24,7 @@ public class Robot extends IterativeRobot {
 	
 	// load all subsystems
 	public static final Drive_Subsystem driveSubsystem = new Drive_Subsystem();
+	public static final Drive_Encoder_Subsystem driveEncoderSubsystem = new Drive_Encoder_Subsystem();
 	public static final Gripper_Subsystem gripperSubsystem = new Gripper_Subsystem();
 	public static final Elevator_Subsystem elevatorSubsystem = new Elevator_Subsystem();
 	public static final Brake_Subsystem brakeSubsystem = new Brake_Subsystem();
@@ -43,7 +41,7 @@ public class Robot extends IterativeRobot {
 		
 		// AUTON CHOOSER SETUP
 		chooser.addDefault("Left Position", new Left_Auton_CommandGroup());
-		//chooser.addObject("Center Position", new Drive_GoStraight_Command(36.0, 0.5, 5.0));
+		chooser.addObject("Center Position", new Center_Auton_CommandGroup());
 		chooser.addObject("Right Position", new Right_Auton_CommandGroup());
 		SmartDashboard.putData("Auto mode", chooser);
 		

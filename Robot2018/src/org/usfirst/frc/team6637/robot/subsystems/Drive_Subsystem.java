@@ -3,7 +3,6 @@ package org.usfirst.frc.team6637.robot.subsystems;
 import org.usfirst.frc.team6637.robot.RobotMap;
 import org.usfirst.frc.team6637.robot.commands.Drive_Arcade_Command;
 
-import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import com.ctre.phoenix.sensors.PigeonIMU;
@@ -44,7 +43,6 @@ public class Drive_Subsystem extends Subsystem {
 	    	gyro = new PigeonIMU(RRMotor);
 	    	resetAngle();
 	    	
-	    	initEncoders();
 	    }
 		
 		public void initDefaultCommand() {
@@ -87,54 +85,4 @@ public class Drive_Subsystem extends Subsystem {
 	    	gyro.setYaw(0.0, 0);
 	    }
 	    
-	    // ENCODERS
-	    
-	    public void initEncoders() {
-			LFMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
-			RFMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
-			
-			LFMotor.setSensorPhase(true);
-			RFMotor.setSensorPhase(true);
-			
-			resetEncoders();
-		}
-	    
-	    public void resetEncoders() {
-	    	LFMotor.setSelectedSensorPosition(0, 0, 0);
-	    	RFMotor.setSelectedSensorPosition(0, 0, 0);
-	    }
-	    
-	    public int getLeftPosition() {
-	    	int pos = LFMotor.getSensorCollection().getQuadraturePosition();
-	    	return -pos;    
-	    }
-	    
-	    public int getRightPosition() {
-	    	int pos = RFMotor.getSensorCollection().getQuadraturePosition();
-	    	return pos;    
-	    }
-	    
-	    public double getAverageDistance() {
-	    	return getLeftPositionInches() + getRightPositionInches() / 2;
-	    }
-	    
-	    public double getLeftPositionInches() {
-			double rotations = ((double) getLeftPosition()) / (4 * 360);
-			
-			return rotationsToInches(rotations);
-		}
-		
-		public double getRightPositionInches() {
-			double rotations = ((double) getRightPosition()) / (4 * 360);
-			
-			return rotationsToInches(rotations);
-		}
-		
-		public double rotationsToInches(double rotations) {
-			return rotations * (Math.PI * 6);
-		}
-		
-		public double inchesToRotations(double inches) {
-			return inches / (Math.PI * 6);
-		}
 	}

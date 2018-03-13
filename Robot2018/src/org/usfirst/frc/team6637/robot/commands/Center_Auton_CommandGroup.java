@@ -27,17 +27,43 @@ public class Center_Auton_CommandGroup extends CommandGroup {
         // arm.
     	String gameData;
 		gameData = DriverStation.getInstance().getGameSpecificMessage();
-		if(gameData.charAt(0) == 'L'){ 
-			
-			
-			
-			//addSequential(new Drive_GoStraight_Command(15.0)); 
 		
+		// RIGHT SWITCH IS OURS
+		if(gameData.charAt(0) == 'R'){ 
+			
+			// raise elevator
+			addSequential(new Elevator_Auton_Raise_Command(26000));		
+			
+			// drive forward 12 feet minus length of bot and bumpers
+			addSequential(new Drive_GoStraight_Command(120.0, 0.5, 36.0));
+			
+			// drop cube
+			addSequential(new Gripper_Auton_Open_Command());			
+
+		// LEFT SWITCH IS OURS
 		} else if(gameData.charAt(1) == 'L') {
 			
-			//Scale is ours
+			// raise elevator
+			addSequential(new Elevator_Auton_Raise_Command(26000));
+			
+			// drive forward 2 feet
+			addSequential(new Drive_GoStraight_Command(24.0, 0.5, 6.0));
+			
+			// turn left
+			addSequential(new Drive_TurnToAngle_Command(-90.0));
+			
+			//drive forward 
+			addSequential(new Drive_GoStraight_Command(11.0, 0.5, 40.0));
+			
+			// turn right
+			addSequential(new Drive_TurnToAngle_Command(90.0));
+			
+			// drive forward
+			addSequential(new Drive_GoStraight_Command(88.0, 0.5, 24.0));			
+			
+			// drop cube
+			addSequential(new Gripper_Auton_Open_Command());	
 			
 		}
-		
     }
 }
