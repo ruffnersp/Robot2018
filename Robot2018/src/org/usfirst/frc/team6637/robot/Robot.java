@@ -33,16 +33,16 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 
 	Command autonomousCommand;
-	SendableChooser<Command> chooser = new SendableChooser<>();
+	SendableChooser<String> chooser = new SendableChooser<>();
 
 	@Override
 	public void robotInit() {
 		oi = new OI();
 		
 		// AUTON CHOOSER SETUP
-		chooser.addDefault("Left Position", new Left_Auton_CommandGroup());
-		chooser.addObject("Center Position", new Center_Auton_CommandGroup());
-		chooser.addObject("Right Position", new Right_Auton_CommandGroup());
+		chooser.addDefault("Left Position", "Left");
+		chooser.addObject("Center Position", "Center");
+		chooser.addObject("Right Position", "Right");
 		SmartDashboard.putData("Auto mode", chooser);
 		
 		CameraServer.getInstance().startAutomaticCapture();
@@ -60,7 +60,14 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void autonomousInit() {
-		autonomousCommand = chooser.getSelected();
+		String command = chooser.getSelected();
+		if(command.equals("Left")){
+			autonomousCommand = new Left_Auton_CommandGroup();
+		}else if(command.equals("Center")){
+			autonomousCommand = new Center_Auton_CommandGroup();
+		}else if(command.equals("Right")){
+			autonomousCommand = new Right_Auton_CommandGroup();
+		} 
 		if (autonomousCommand != null)
 			autonomousCommand.start();
 	}

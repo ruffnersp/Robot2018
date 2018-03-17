@@ -12,6 +12,8 @@ public class Drive_TurnToAngle_Command extends Command {
 	
 	double targetAngle, error;
 	double kP = .1;
+	public int toleranceCount = 0;
+	double speed = 0.55;
 
     public Drive_TurnToAngle_Command(double targetAngle) {
         // Use requires() here to declare subsystem dependencies
@@ -27,9 +29,7 @@ public class Drive_TurnToAngle_Command extends Command {
     protected void execute() {
     	double currentAngle = Robot.driveSubsystem.getAngle();
     	error = Math.IEEEremainder(targetAngle-currentAngle,360.0);
-    	//double speed = Math.IEEEremainder(kP*error, 1);
-    	double speed = 0.5;
-    	Timer.delay(.1);
+    	Timer.delay(.05);
     	
     	if(error > 0 ) {
     		Robot.driveSubsystem.setPower(-speed, speed);
@@ -37,12 +37,18 @@ public class Drive_TurnToAngle_Command extends Command {
     		Robot.driveSubsystem.setPower(speed, -speed);
     	}
     	
+    	// if close, increment toleranceCount, isFinished depends on this
+    	if(Math.abs(error) < 6) {
+    		toleranceCount++;
+    		speed = 0.45;
+    	} 
+    	
 
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if(Math.abs(error) < 2) {
+    	if(toleranceCount > 10) {
     		return true;
     	}
         return false;

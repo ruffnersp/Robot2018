@@ -34,6 +34,8 @@ public class Drive_GoStraight_Command extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     		angle = Robot.driveSubsystem.getAngle();
+    	System.out.println(Robot.driveEncoderSubsystem.getLeftDistance());
+    	System.out.println(Robot.driveEncoderSubsystem.getRightDistance());
     		
     		//drive normal, drive braked, drive in reverse breaked
     		Timer.delay(0.004);

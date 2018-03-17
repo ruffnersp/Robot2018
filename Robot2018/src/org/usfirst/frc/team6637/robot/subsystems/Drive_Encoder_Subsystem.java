@@ -36,7 +36,7 @@ public class Drive_Encoder_Subsystem extends Subsystem {
     }
    
     public double getLeftDistance(){
-		return LDriveEncoder.getDistance();
+		return -LDriveEncoder.getDistance();
     }
 
     public double getLeftRate(){
