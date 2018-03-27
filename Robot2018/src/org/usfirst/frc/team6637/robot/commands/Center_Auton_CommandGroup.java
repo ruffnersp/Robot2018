@@ -34,10 +34,10 @@ public class Center_Auton_CommandGroup extends CommandGroup {
 			if (gameData.charAt(0) == 'R') {
 
 				// raise elevator
-				addSequential(new Elevator_Auton_Raise_Command(24000));
+				addParallel(new Elevator_Auton_Raise_Command(24000));
 
 				// drive forward 12 feet minus length of bot and bumpers
-				addSequential(new Drive_GoStraight_Command(94.0, 0.5, 36.0));
+				addParallel(new Drive_GoStraight_Command(94.0, 0.75, 36.0));
 				// drop cube
 				addSequential(new Gripper_Auton_Open_Command());
 
@@ -45,10 +45,10 @@ public class Center_Auton_CommandGroup extends CommandGroup {
 			} else if (gameData.charAt(0) == 'L') {
 
 				// raise elevator
-				addSequential(new Elevator_Auton_Raise_Command(24000));
+				addParallel(new Elevator_Auton_Raise_Command(24000));
 
 				// drive forward 2 feet
-				addSequential(new Drive_GoStraight_Command(24.0, 0.5, 9.0));
+				addParallel(new Drive_GoStraight_Command(24.0, 0.5, 9.0));
 
 				// turn left
 				addSequential(new Drive_TurnToAngle_Command(-90.0));

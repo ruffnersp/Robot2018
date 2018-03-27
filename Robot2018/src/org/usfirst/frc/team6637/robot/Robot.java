@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team6637.robot.commands.Center_Auton_CommandGroup;
 import org.usfirst.frc.team6637.robot.commands.Left_Auton_CommandGroup;
 import org.usfirst.frc.team6637.robot.commands.Right_Auton_CommandGroup;
-
+import org.usfirst.frc.team6637.robot.subsystems.Arm_Encoder_Subsystem;
 import org.usfirst.frc.team6637.robot.subsystems.Arm_Subsystem;
 import org.usfirst.frc.team6637.robot.subsystems.Brake_Subsystem;
 import org.usfirst.frc.team6637.robot.subsystems.Drive_Subsystem;
@@ -29,6 +29,7 @@ public class Robot extends IterativeRobot {
 	public static final Elevator_Subsystem elevatorSubsystem = new Elevator_Subsystem();
 	public static final Brake_Subsystem brakeSubsystem = new Brake_Subsystem();
 	public static final Arm_Subsystem armSubsystem = new Arm_Subsystem();
+	public static final Arm_Encoder_Subsystem armEncoderSubsystem = new Arm_Encoder_Subsystem();
 	public static final Winch_Subsystem winchsubsystem = new Winch_Subsystem();
 	public static OI oi;
 

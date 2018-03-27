@@ -30,5 +30,7 @@ public class RobotMap {
 	public static final int LDriveEncoderB = 3;
 	public static final int RDriveEncoderA = 4;
 	public static final int RDriveEncoderB = 5;
-	
+	public static final int ArmEncoderA = 6;
+	public static final int ArmEncoderB = 7;
+
 }

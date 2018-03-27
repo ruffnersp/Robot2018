@@ -34,7 +34,7 @@ public class Right_Auton_CommandGroup extends CommandGroup {
 				addSequential(new Elevator_Auton_Raise_Command(24000));
 
 				// drive forward 14 feet - 168 inches
-				addSequential(new Drive_GoStraight_Command(152.0, 0.5, 20.0));
+				addSequential(new Drive_GoStraight_Command(152.0, 0.6, 20.0));
 
 				// turn left
 				addSequential(new Drive_TurnToAngle_Command(-90.0));
@@ -48,16 +48,16 @@ public class Right_Auton_CommandGroup extends CommandGroup {
 			} else if (gameData.charAt(1) == 'R') {
 
 				// drive forward 27 feet - 324 inches
-				addSequential(new Drive_GoStraight_Command(308.0, 0.5, 24.0));
+				addSequential(new Drive_GoStraight_Command(324.0, 0.6, 24.0));
 
 				// raise elevator
-				addSequential(new Elevator_Auton_Raise_Command(57000));
+				addSequential(new Elevator_Auton_Raise_Command(55300));
 
 				// turn left
 				addSequential(new Drive_TurnToAngle_Command(-90.0));
 
 				// drive forward 1 foot
-				addSequential(new Drive_GoStraight_Command(12.0, 0.35, 5.0));
+				addSequential(new Drive_GoStraight_Command(28.0, 0.35, 5.0));
 
 				// drop cube
 				addSequential(new Gripper_Auton_Open_Command());
@@ -69,13 +69,13 @@ public class Right_Auton_CommandGroup extends CommandGroup {
 				addSequential(new Elevator_Auton_Raise_Command(18000));
 
 				// drive forward 20.5 feet - 246 inches
-				addSequential(new Drive_GoStraight_Command(206.0, 0.5, 24.0));
+				addSequential(new Drive_GoStraight_Command(228.0, 0.6, 24.0));
 
 				// turn left
 				addSequential(new Drive_TurnToAngle_Command(-90.0));
 
 				// drive forward feet x inches
-				addSequential(new Drive_GoStraight_Command(100.0, 0.4, 24.0));
+				addSequential(new Drive_GoStraight_Command(100.0, 0.6, 24.0));
 
 			}
 		}
