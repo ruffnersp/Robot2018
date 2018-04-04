@@ -20,7 +20,7 @@ public class Left_Auton_CommandGroup extends CommandGroup {
 				addParallel(new Elevator_Auton_Raise_Command(25000));
 
 				// drive forward 14 feet - 168 inches
-				addParallel(new Drive_GoStraight_Command(152.0, 0.75, 24.0));
+				addSequential(new Drive_GoStraight_Command(152.0, 0.75, 24.0));
 
 				// turn right
 				addSequential(new Drive_TurnToAngle_Command(90.0));
@@ -41,7 +41,7 @@ public class Left_Auton_CommandGroup extends CommandGroup {
 				addParallel(new Elevator_Auton_Raise_Command(55300));
 
 				// turn right
-				addParallel(new Drive_TurnToAngle_Command(90.0));
+				addSequential(new Drive_TurnToAngle_Command(90.0));
 
 				// drive forward 1 foot
 				addSequential(new Drive_GoStraight_Command(28.0, 0.35, 11.0));

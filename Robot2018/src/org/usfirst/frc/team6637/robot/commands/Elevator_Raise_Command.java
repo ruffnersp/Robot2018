@@ -50,9 +50,9 @@ public class Elevator_Raise_Command extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.elevatorSubsystem.stop();
-    	Timer.delay(0.1);
     	Robot.brakeSubsystem.close();
+    	Timer.delay(0.1);
+    	Robot.elevatorSubsystem.stop();
     }
 
     // Called when another command which requires one or more of the same

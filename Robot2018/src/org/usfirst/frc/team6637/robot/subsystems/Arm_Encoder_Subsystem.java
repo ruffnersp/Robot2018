@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Arm_Encoder_Subsystem extends Subsystem {
 
 	Encoder ArmEncoder;
+	public char[] getDistance;
 
 	public Arm_Encoder_Subsystem() {
 
@@ -25,7 +26,7 @@ public class Arm_Encoder_Subsystem extends Subsystem {
 	}
 
 	public double getDistance() {
-		return ArmEncoder.getDistance();
+		return -ArmEncoder.getDistance();
 	}
 
 	public void resetEncoders() {

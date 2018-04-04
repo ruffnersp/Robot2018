@@ -17,8 +17,8 @@ public class Arm_Subsystem extends Subsystem {
 
 	public Spark Arm = new Spark(RobotMap.Arm);
 	public static double armSpeed = 1.0;
-	public double threshold = 9001;
-	
+	public double threshold = 13;
+
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
 		// setDefaultCommand(new MySpecialCommand());
@@ -27,18 +27,19 @@ public class Arm_Subsystem extends Subsystem {
 	public void rotateForward() {
 
 		// if encoder distance is greater than X, slow the speed
+		System.out.println(Robot.armEncoderSubsystem.getDistance());
 		Timer.delay(0.004);
 		if (Robot.armEncoderSubsystem.getDistance() > threshold) {
-			armSpeed = 0.3; 
+			armSpeed = 0.25;
 		} else {
-			armSpeed = 0.7; 
+			armSpeed = 0.55;
 		}
 
 		Arm.set(armSpeed);
 	}
 
 	public void rotateBack() {
-		armSpeed = 0.3;
+		armSpeed = 0.4;
 		Arm.set(-armSpeed);
 	}
 
