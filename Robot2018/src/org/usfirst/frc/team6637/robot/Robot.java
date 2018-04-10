@@ -10,7 +10,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team6637.robot.commands.Center_Auton_CommandGroup;
 import org.usfirst.frc.team6637.robot.commands.Left_Auton_CommandGroup;
+import org.usfirst.frc.team6637.robot.commands.Left_Scale_CommandGroup;
 import org.usfirst.frc.team6637.robot.commands.Right_Auton_CommandGroup;
+import org.usfirst.frc.team6637.robot.commands.Right_Scale_CommandGroup;
 import org.usfirst.frc.team6637.robot.subsystems.Arm_Encoder_Subsystem;
 import org.usfirst.frc.team6637.robot.subsystems.Arm_Subsystem;
 import org.usfirst.frc.team6637.robot.subsystems.Brake_Subsystem;
@@ -21,7 +23,7 @@ import org.usfirst.frc.team6637.robot.subsystems.Gripper_Subsystem;
 import org.usfirst.frc.team6637.robot.subsystems.Winch_Subsystem;
 
 public class Robot extends IterativeRobot {
-	
+
 	// load all subsystems
 	public static final Drive_Subsystem driveSubsystem = new Drive_Subsystem();
 	public static final Drive_Encoder_Subsystem driveEncoderSubsystem = new Drive_Encoder_Subsystem();
@@ -39,13 +41,15 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		oi = new OI();
-		
+
 		// AUTON CHOOSER SETUP
 		chooser.addDefault("Left Position", "Left");
+		chooser.addObject("Left - Scale Preferred", "LeftScale");
 		chooser.addObject("Center Position", "Center");
 		chooser.addObject("Right Position", "Right");
+		chooser.addObject("Right - Scale Preferred", "RightScale");
 		SmartDashboard.putData("Auto mode", chooser);
-		
+
 		CameraServer.getInstance().startAutomaticCapture();
 	}
 
@@ -62,13 +66,17 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousInit() {
 		String command = chooser.getSelected();
-		if(command.equals("Left")){
+		if (command.equals("Left")) {
 			autonomousCommand = new Left_Auton_CommandGroup();
-		}else if(command.equals("Center")){
+		} else if (command.equals("LeftScale")) {
+			autonomousCommand = new Left_Scale_CommandGroup();
+		} else if (command.equals("Center")) {
 			autonomousCommand = new Center_Auton_CommandGroup();
-		}else if(command.equals("Right")){
+		} else if (command.equals("Right")) {
 			autonomousCommand = new Right_Auton_CommandGroup();
-		} 
+		} else if (command.equals("RightScale")) {
+			autonomousCommand = new Right_Scale_CommandGroup();
+		}
 		if (autonomousCommand != null)
 			autonomousCommand.start();
 	}
@@ -95,6 +103,6 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void testPeriodic() {
-		//LiveWindow.run();
+		// LiveWindow.run();
 	}
 }

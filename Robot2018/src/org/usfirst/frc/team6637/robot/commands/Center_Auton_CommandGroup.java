@@ -37,7 +37,8 @@ public class Center_Auton_CommandGroup extends CommandGroup {
 				addSequential(new Elevator_Auton_Raise_Command(24000));
 
 				// drive forward 12 feet minus length of bot and bumpers
-				addSequential(new Drive_GoStraight_Command(94.0, 0.75, 36.0));
+				addSequential(new Drive_GoStraight_Command(96.0, 0.7, 36.0));
+				
 				// drop cube
 				addSequential(new Gripper_Auton_Open_Command());
 
@@ -54,13 +55,13 @@ public class Center_Auton_CommandGroup extends CommandGroup {
 				addSequential(new Drive_TurnToAngle_Command(-90.0));
 
 				// drive forward
-				addSequential(new Drive_GoStraight_Command(96.0, 0.7, 40.0));
+				addSequential(new Drive_GoStraight_Command(98.0, 0.7, 40.0));
 
 				// turn right
 				addSequential(new Drive_TurnToAngle_Command(90.0));
 
 				// drive forward
-				addSequential(new Drive_GoStraight_Command(88.0, 0.7, 42.0));
+				addSequential(new Drive_GoStraight_Command(87.0, 0.7, 42.0));
 
 				// drop cube
 				addSequential(new Gripper_Auton_Open_Command());
